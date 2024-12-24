@@ -1,0 +1,38 @@
+From 14f37a22f520f963d4fbbd0ef99c073100029ac3 Mon Sep 17 00:00:00 2001
+From: Przemek Rudy <prudy@protonmail.com>
+Date: Mon, 23 Dec 2024 17:29:32 +0100
+Subject: [PATCH] kernel: add compatible string for the mtpoe spi device
+
+Device listed in spidev allows referring it in DT.
+
+Signed-off-by: Przemek Rudy <prudy@protonmail.com>
+---
+ drivers/spi/spidev.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
+index 16bb4fc3a4ba..3394dbd925a8 100644
+--- a/drivers/spi/spidev.c
++++ b/drivers/spi/spidev.c
+@@ -711,6 +711,7 @@ static const struct spi_device_id spidev_spi_ids[] = {
+ 	{ .name = "sx1301" },
+ 	{ .name = "bk4" },
+ 	{ .name = "dhcom-board" },
++	{ .name = "mtpoe" },
+ 	{ .name = "m53cpld" },
+ 	{ .name = "spi-petra" },
+ 	{ .name = "spi-authenta" },
+@@ -741,6 +742,7 @@ static const struct of_device_id spidev_dt_ids[] = {
+ 	{ .compatible = "lwn,bk4", .data = &spidev_of_check },
+ 	{ .compatible = "menlo,m53cpld", .data = &spidev_of_check },
+ 	{ .compatible = "micron,spi-authenta", .data = &spidev_of_check },
++	{ .compatible = "mikrotik,mtpoe", .data = &spidev_of_check },
+ 	{ .compatible = "rohm,bh2228fv", .data = &spidev_of_check },
+ 	{ .compatible = "rohm,dh2228fv", .data = &spidev_of_check },
+ 	{ .compatible = "semtech,sx1301", .data = &spidev_of_check },
+
+base-commit: a66cdcdc9e44b4c508190ea3cde5750954d1c4eb
+prerequisite-patch-id: 1603ee4348af1e94f4d695ed3d128d6d59b52e84
+-- 
+2.39.5
+
